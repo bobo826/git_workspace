@@ -1,0 +1,6 @@
+{
+    "presets": ["env", "react"],
+	"plugins": [
+        ["import", { "libraryName": "ant", "libraryDirectory": "lib"}, "ant"]
+    ]
+}

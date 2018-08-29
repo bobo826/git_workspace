@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- set `maximum-scale` for some compatibility issues -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <!-- 引入 FastClick 并且设置 html meta -->
+  <!-- 引入百度地图 -->
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=E93d1a61b140b157164aa54a0fe26c92"></script>
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+    if(!window.Promise) {
+      //引入 Promise 的 fallback 支持 (部分安卓手机不支持 Promise)
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

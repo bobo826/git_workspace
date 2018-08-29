@@ -1,0 +1,31 @@
+.common{
+    text-align: center;
+    width: 100%;
+}
+.grid_left{
+    margin: auto;
+}
+.grid_left > img {
+    border-style: none;
+    width: 80%;
+    height: auto;
+}
+.grid_right{
+    margin: 0;
+}
+.badge{
+    width: 80px;
+    padding: 8px;
+    position: absolute;
+    right: -32px;
+    top: 8px;
+    background-color: #ff5b05;
+    color: #fff;
+    white-space: nowrap;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    text-align: center;
+    font-size: 15px;
+
+}
