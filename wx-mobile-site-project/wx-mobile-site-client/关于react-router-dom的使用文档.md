@@ -13,7 +13,14 @@ devServer: {
 
 
 
-3.react-router 4.0 下服务器如何配合BrowserRouter
+
+3.react-router 4.0 下服务器如何配合BrowserRouter  ---解决其刷新页面为404的问题
+
+问题解决原理为重定向路由指向index.html页面。
+
+
+
+node服务器配置
 　　react-router作为react框架路由解决方案在react项目中举足轻重。
 
 　　在react-router 4.0版本中，API与先前版本相比有了很大的修改，在2.0、3.0中常用的<Router>组件作为路由底层配置组件不再常用，取而代之的是四个各有不同的路由组件：
@@ -65,13 +72,35 @@ app.use(function(req, res, next) {
         }
     })
 });
-复制代码
- 
 
-此处踩坑无数，在网上搜索方法后换用nginx，使用try_files字段定向到入口html，但是重定向后，webpack打包的js文件没有执行。
+nginx服务器配置
+server {
+ ...
+ location / {
+  try_files $uri /index.html
+ }
+}
 
-在查看firebug时发现此次刷新的响应头中设置了"Connection":"keep-alive";
+Tomcat服务器配置   ----找到conf目录下的web.xml文件，然后加上一句话让他定位回来
+<error-page>
+  <error-code>404</error-code>
+  <location>/index.html</location>
+</error-page>
 
-觉得问题应该出在这里，换用nodejs用200状态配合keep-alive果然解决了问题。
+Apache服务器配置   ----项目根目录下新建.htaccess文件并且配置如下
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ RewriteBase /
+ RewriteRule ^index\.html$ - [L]
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteCond %{REQUEST_FILENAME} !-l
+ RewriteRule . /index.html [L]
+</IfModule>
 
-在react-router 4.0 多级路由下刷新页面不会再404，而是保存了前端状态。
+
+webpack-dev-server服务器配置
+devServer: {
+ historyApiFallback: true
+}
+
