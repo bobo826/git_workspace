@@ -1,25 +1,36 @@
 import React ,{Component} from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import PropTypes from 'prop-types'
 import './login.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 class LoginForm extends Component {
-    constructor(props, history) {
-        super(props, history); 
+    constructor(props) {
+        super(props);
     }
-  
+
     handleSubmit(e){
         e.preventDefault();
         let data = this.props.form.getFieldsValue();
         console.info("表单值：",data);
-        this.props.history.push('/home')
+        this.props.history.replace('/home');
+        window.localStorage.setItem('isLogin', true);
+        
+        
+        
+        
         // let url = '/webapi/sysuser/login';
+        // let that = this;  
         // axios.post(url,data)
         // .then(function (response) {
-        //     console.log(response);
-        //     console.log("登陆成功");
-        //     //this.props.history.push('/home');
+        //     if(response.data.success){
+        //         console.log(response.data.mess);
+        //         console.log(that);
+        //         console.log(that.props);
+        //         that.props.history.replace('/home');
+        //     }else{
+        //         console.log(response.data.mess);
+        //     }
         // })
         // .catch(function (response) {
         //     console.log(response);
