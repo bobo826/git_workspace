@@ -6,6 +6,7 @@ import Home from './components/home/home';
 import Login from './components/login/login';
 
 
+//默认渲染该组件
 class PrivateRoute extends React.Component {
     render () {
       if (this.props.isLogin) {
@@ -19,20 +20,20 @@ class PrivateRoute extends React.Component {
       }
     }
 }
-  
+
+
 
 class App extends React.Component{
-
     constructor () {
         super();
         this.state = {
-          isLogin: false
+          isLogin: localStorage.getItem('isLogin')
         }
     }
     componentDidMount () {
         setInterval(() => {
             this.setState({
-            isLogin: (localStorage.getItem('isLogin')) === 'true' ? true : false
+            isLogin: (localStorage.getItem('isLogin')) == "true" ? true : false
             })
         }, 200)
     }
@@ -42,8 +43,7 @@ class App extends React.Component{
             <BrowserRouter>
               <Switch>
                 <Route exact path="/" component={Login} />
-                {/* <Route path="/home" component={Home} /> */}
-                <PrivateRoute isLogin={this.state.isLogin} path="/home"/>
+                <PrivateRoute isLogin={this.state.isLogin} path="/home" />
               </Switch>
             </BrowserRouter>
         )

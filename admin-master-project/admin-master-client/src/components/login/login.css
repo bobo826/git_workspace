@@ -1,9 +1,11 @@
-body{
-    height: 1vh;
+#app{
+    display: flex;
+    min-height: 100vh;
 }
+
 .login-form {
-    max-width: 400px;
-    margin: 300px auto 0;
+    margin: auto;
+    width: 400px;
     border: 1px solid whitesmoke;
     padding: 20px 40px;
     border-radius: 5px;

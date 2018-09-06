@@ -8,7 +8,7 @@ export default class Home extends React.Component{
 
     render(){
       return (
-        <Button onClick={(e) => {e.preventDefault();window.localStorage.setItem("isLogin",false)}} />
+        <Button onClick={(e) => {e.preventDefault();window.localStorage.setItem("isLogin",false)}} >注 销</Button>
       )
     }
 }

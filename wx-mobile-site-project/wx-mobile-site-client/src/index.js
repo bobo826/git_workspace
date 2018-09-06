@@ -12,6 +12,7 @@ import Nav from './components/nav/nav';
 //首页导航nav板块对应的子页面‘泊悦车场页面’
 import Pycc from './components/pycc/pycc';
 import Clfd from './components/clfd/clfd';
+import Yzxf from './components/yzxf/yzxf';
 //首页导航content板块
 import Content from './components/content/content';
 
@@ -33,32 +34,6 @@ class App extends React.Component{
 
 
 
-// nav导航板块对应的子页面：
-//车辆防盗页面
-// class Clfd extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 车辆防盗页面
-//             </div>
-//         )
-//     }
-// }
-
-
-
-
-
-//月租续费页面
-class Yzxf extends Component {
-    render() {
-        return (
-            <div>
-                月租续费页面
-            </div>
-        )
-    }
-}
 //车位租聘页面
 class Cwzp extends Component {
     render() {

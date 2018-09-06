@@ -8,33 +8,31 @@ class LoginForm extends Component {
     constructor(props) {
         super(props);
     }
+    componentWillUpdate(){
+        console.log(window.localStorage.getItem("isLogin"));
+        if(window.localStorage.getItem("isLogin") === "true"){
+            this.props.history.push('/home');
+        }
+    }
 
     handleSubmit(e){
         e.preventDefault();
         let data = this.props.form.getFieldsValue();
-        console.info("表单值：",data);
-        this.props.history.replace('/home');
-        window.localStorage.setItem('isLogin', true);
-        
-        
-        
-        
-        // let url = '/webapi/sysuser/login';
-        // let that = this;  
-        // axios.post(url,data)
-        // .then(function (response) {
-        //     if(response.data.success){
-        //         console.log(response.data.mess);
-        //         console.log(that);
-        //         console.log(that.props);
-        //         that.props.history.replace('/home');
-        //     }else{
-        //         console.log(response.data.mess);
-        //     }
-        // })
-        // .catch(function (response) {
-        //     console.log(response);
-        // });
+        console.info("表单值：",data);        
+        let url = '/webapi/sysuser/login';
+        let that = this;  
+        axios.post(url,data)
+        .then(function (response) {
+            if(response.data.success){
+                that.props.history.push('/home');
+                window.localStorage.setItem('isLogin', true);
+            }else{
+                console.log(response.data.mess);
+            }
+        })
+        .catch(function (response) {
+            console.log(response);
+        });
     }
 
     render() {
